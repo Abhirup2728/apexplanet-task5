@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shoply — Products</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Shoply</a>
+      <nav class="nav" id="mainNav">
+        <button class="nav-toggle" id="navToggle2" aria-label="Toggle navigation">☰</button>
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="cart.html" id="cartLink2">Cart (<span id="cartCount2">0</span>)</a></li>
+          <li><button id="themeToggle2" class="btn-ghost" aria-pressed="false">🌙</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <div class="search-wrap">
+        <input id="searchInput" type="search" placeholder="Search products..." aria-label="Search products" />
+      </div>
+
+      <div class="filters">
+        <select id="categoryFilter" aria-label="Filter by category">
+          <option value="">All categories</option>
+        </select>
+
+        <select id="sortSelect" aria-label="Sort products">
+          <option value="default">Sort: Featured</option>
+          <option value="price-asc">Price: Low → High</option>
+          <option value="price-desc">Price: High → Low</option>
+          <option value="rating-desc">Rating: High → Low</option>
+        </select>
+
+        <label class="range">
+          <span>Max price</span>
+          <input id="priceRange" type="range" min="0" max="1000" step="1" />
+          <span id="priceValue">₹1000</span>
+        </label>
+      </div>
+    </section>
+
+    <section id="productsGrid" class="grid grid-4" aria-live="polite">
+      <!-- product cards injected here -->
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </section>
+  </main>
+
+  <a id="backTop" class="back-top" aria-label="Back to top">↑</a>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year2"></span> Shoply</p>
+    </div>
+  </footer>
+
+  <div id="toast2" class="toast" aria-live="polite"></div>
+
+  <script src="script.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      document.getElementById('year2').textContent = new Date().getFullYear();
+      await Shoply.init();
+      Shoply.mountProductsPage({
+        productsGrid: '#productsGrid',
+        searchInput: '#searchInput',
+        categoryFilter: '#categoryFilter',
+        sortSelect: '#sortSelect',
+        priceRange: '#priceRange',
+        priceValue: '#priceValue'
+      });
+    });
+  </script>
+</body>
+</html>

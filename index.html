@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shoply — Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Shoply — modern responsive e-commerce demo with JS, localStorage, API fetching" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Shoply</a>
+      <nav class="nav" id="mainNav">
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="cart.html" id="cartLink">Cart (<span id="cartCount">0</span>)</a></li>
+          <li><button id="themeToggle" class="btn-ghost" aria-pressed="false">🌙</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <h1>Shoply — Modern UI, Fast Performance</h1>
+          <p>Responsive e‑commerce demo with filtering, search, cart persistence, and optimized loading.</p>
+          <p><a class="btn" href="products.html">Browse Products</a></p>
+        </div>
+        <div class="hero-media">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1200&q=60&auto=format&fit=crop"
+               alt="Shopping" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <section class="featured container" aria-labelledby="featuredTitle">
+      <h2 id="featuredTitle">Featured Products</h2>
+      <div id="featuredGrid" class="grid grid-4">
+        <!-- JS will inject 4 featured product cards -->
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+      <p class="center"><a class="btn-outline" href="products.html">View All Products</a></p>
+    </section>
+
+    <section class="info container">
+      <div class="info-grid">
+        <div>
+          <h3>Fast</h3>
+          <p>Optimized assets, lazy images, and minimal DOM updates.</p>
+        </div>
+        <div>
+          <h3>Responsive</h3>
+          <p>Mobile‑first layout with accessible navigation and touch targets.</p>
+        </div>
+        <div>
+          <h3>Persistent</h3>
+          <p>Cart saved to localStorage so your items persist across refreshes.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Shoply. Built with HTML, CSS & JavaScript.</p>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script src="script.js" defer></script>
+  <script>
+    // small page-specific init
+    document.addEventListener('DOMContentLoaded', async () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      await Shoply.init(); // shared init
+      Shoply.renderFeatured('#featuredGrid', 4);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shoply — Cart</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Shoply</a>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container cart-page">
+    <h1>Your Cart</h1>
+    <section id="cartList" class="cart-list">
+      <!-- cart items injected -->
+    </section>
+
+    <aside class="cart-summary" id="cartSummary">
+      <!-- summary injected -->
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year3"></span> Shoply</p>
+    </div>
+  </footer>
+
+  <div id="toast3" class="toast" aria-live="polite"></div>
+
+  <script src="script.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      document.getElementById('year3').textContent = new Date().getFullYear();
+      await Shoply.init();
+      Shoply.mountCartPage('#cartList', '#cartSummary');
+    });
+  </script>
+</body>
+</html>
